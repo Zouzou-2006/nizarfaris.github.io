@@ -53,6 +53,58 @@
         <div class="bar"></div>
       </div>
     </header>
+    
+    <!-- ===== AI CHAT BUTTON ===== -->
+    <button class="chat-button" id="chatButton" aria-label="Open AI Chat">
+      <i class="fas fa-robot"></i>
+      <span class="chat-pulse"></span>
+      <span class="chat-notification" id="chatNotification">99+</span>
+    </button>
+    
+    <!-- ===== CHAT MODAL ===== -->
+    <div class="chat-modal" id="chatModal">
+      <div class="chat-container">
+        <!-- Chat Header -->
+        <div class="chat-header">
+          <div class="chat-header-info">
+            <i class="fas fa-robot"></i>
+            <div>
+              <h3>AI Assistant</h3>
+              <span class="chat-status">Online</span>
+            </div>
+          </div>
+          <button class="chat-close" id="chatClose">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <!-- Chat Messages -->
+        <div class="chat-messages" id="chatMessages">
+          <div class="chat-message bot-message">
+            <div class="message-avatar">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3C!-- Laurel Wreath --%3E%3Cpath fill='%2300ff88' d='M70 25c-5 2-8 5-10 8l-8 4c-3 2-5 3-8 3-2 0-4-1-6-2-3-2-5-5-6-8 3 0 6 1 9 3 3 1 5 2 8 2 4 0 7-2 10-4l8-4c5-3 11-4 17-2 6 2 11 6 14 12-3-1-6-2-9-3-4-1-8-2-11-2-3 0-5 1-8 3zm60 0c5 2 8 5 10 8l8 4c3 2 5 3 8 3 2 0 4-1 6-2 3-2 5-5 6-8-3 0-6 1-9 3-3 1-5 2-8 2-4 0-7-2-10-4l-8-4c-5-3-11-4-17-2-6 2-11 6-14 12 3-1 6-2 9-3 4-1 8-2 11-2 3 0 5 1 8 3z'/%3E%3Cpath fill='%2300ff88' d='M65 30l-6 8-6 6c-2 2-5 3-8 3s-6-1-8-3c-3-2-5-5-6-9 4 2 8 3 12 3 4 0 8-1 11-3l6-6 6-8c3-4 8-7 13-8 6-1 11 0 16 3-4 0-7 1-11 3-3 2-6 4-9 7-2 2-4 5-5 8l-5-4zm70 0l6 8 6 6c2 2 5 3 8 3s6-1 8-3c3-2 5-5 6-9-4 2-8 3-12 3-4 0-8-1-11-3l-6-6-6-8c-3-4-8-7-13-8-6-1-11 0-16 3 4 0 7 1 11 3 3 2 6 4 9 7 2 2 4 5 5 8l5-4z'/%3E%3Cpath fill='%2300ff88' d='M60 35l-5 9-5 7c-2 3-5 5-9 6-3 1-7 0-10-1-3-2-6-5-7-9 4 3 9 4 14 4 5-1 9-3 12-6l5-7 5-9c2-5 6-9 11-11 5-3 11-3 17-1-4 1-8 3-11 5-4 3-7 6-9 10-1 3-2 6-3 9l-5-6zm80 0l5 9 5 7c2 3 5 5 9 6 3 1 7 0 10-1 3-2 6-5 7-9-4 3-9 4-14 4-5-1-9-3-12-6l-5-7-5-9c-2-5-6-9-11-11-5-3-11-3-17-1 4 1 8 3 11 5 4 3 7 6 9 10 1 3 2 6 3 9l5-6z'/%3E%3C!-- Head --%3E%3Cpath fill='%23ff003c' d='M100 50c-25 0-45 20-45 45v20c0 8 2 15 6 22 4 6 10 11 17 14v4c0 8 7 15 15 15h14c8 0 15-7 15-15v-4c7-3 13-8 17-14 4-7 6-14 6-22V95c0-25-20-45-45-45z'/%3E%3C!-- Nose and Features --%3E%3Cpath fill='%230ef' d='M100 105v15l-3 3c-2 2-4 3-7 3-2 0-4-1-6-3l-2-3c2 2 4 3 7 3 3 0 6-1 8-3l3-3v-12zm-15-20c-3 0-6 3-6 6s3 6 6 6 6-3 6-6-3-6-6-6zm30 0c-3 0-6 3-6 6s3 6 6 6 6-3 6-6-3-6-6-6z'/%3E%3C!-- Toga/Shoulders --%3E%3Cpath fill='%23ff003c' d='M100 165c-20 0-38-8-50-20v30c0 8 6 15 14 15h72c8 0 14-7 14-15v-30c-12 12-30 20-50 20z'/%3E%3Cpath fill='%230ef' d='M60 150c-5-5-8-10-10-16h20c2 6 5 11 10 16H60zm80 0c5-5 8-10 10-16h-20c-2 6-5 11-10 16h20z'/%3E%3C!-- Base/Pedestal --%3E%3Crect fill='%230ef' x='50' y='185' width='100' height='10' rx='2'/%3E%3Crect fill='%23ff003c' x='55' y='192' width='90' height='6' rx='1'/%3E%3C/svg%3E" alt="Ceasar" style="width: 100%; height: 100%;">
+            </div>
+            <div class="message-content">
+              <p>Hi! I'm Ceasar, Nizar's AI assistant. Ask me about his skills, projects, or experience!</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Chat Input -->
+        <div class="chat-input-container">
+          <input 
+            type="text" 
+            id="chatInput" 
+            class="chat-input" 
+            placeholder="Type your message..."
+            autocomplete="off"
+          >
+          <button class="chat-send" id="chatSend">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
 
     <!-- ===== MAIN CONTENT AREA ===== -->
     <main>
