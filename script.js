@@ -451,6 +451,10 @@ document.addEventListener('DOMContentLoaded', function() {
     moroccan: {
       keywords: ['morocco', 'couscous', 'arabic', 'north africa'],
       response: "Nizar is proudly **Moroccan**! 🇲🇦\n\n**Fun Facts**:\n• Speaks Arabic (Moroccan dialect) + French\n• Can make authentic couscous (probably)\n• Rich cultural heritage\n• US government classifies him as Caucasian (confused paperwork! 😂)\n\n**Cultural Skills**:\n• Multilingual (3 human languages + 5 programming languages)\n• Understanding of diverse perspectives\n• International mindset\n\nHe brings that global perspective to his work! 🌍"
+    },
+    strength: {
+      keywords: ['strength', 'training', 'workout', 'gym', 'fitness', 'exercise', 'lift', 'lifting', 'bodybuilding', 'muscle'],
+      response: "Nizar is into **Strength Training**! 💪🏋️\n\n**Why it matters**:\n• Discipline carries over from gym to code\n• Physical fitness = mental sharpness\n• Problem-solving under pressure (like that last rep!)\n• Goal-oriented mindset\n\n**Programming Parallel**:\nJust like debugging, you gotta keep pushing through the pain until it works! 😤\n\n**Daily Routine**:\n• Morning: Lift weights 🏋️\n• Afternoon: Lift bugs out of code 🐛\n• Evening: Lift his GPA (already at 4.0 tho!) 📚\n\nHe's building both his body AND his portfolio! Strong code, strong body! 💻💪"
     }
   };
 
