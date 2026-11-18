@@ -8,8 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     "FULL-STACK DEVELOPER",
     "SQL DATABASE",
     "PROBLEM SOLVER",
-    "AI ENTHUSIAST",
-    "TECH INNOVATOR"
+    "AI APPLICATION BUILDER",
+    "CSE @ OHIO STATE"
   ];
   let textIndex = 0;
   let charIndex = 0;
@@ -310,153 +310,126 @@ document.addEventListener('DOMContentLoaded', function() {
   const chatSend = document.getElementById('chatSend');
   const chatMessages = document.getElementById('chatMessages');
 
-  // Knowledge base about Nizar
+  // Knowledge base about Nizar (keep in sync with the resume)
   const knowledgeBase = {
+    agentauditor: {
+      keywords: ['agent auditor', 'auditor', 'hackathon', 'ubc', 'solana', 'x402', 'usdc', 'blockchain', 'crypto payment'],
+      response: "**Agent Auditor** is Nizar's lead project (UBC 2026 Hackathon, team of 4, in progress). He's the technical lead and top code contributor. 🛡️\n\nIt's a set of spending controls for an AI agent that buys data in USDC on Solana devnet. The agent never holds the wallet key, so every payment has to pass through a gateway Nizar built:\n\n• Default-deny finance rules and human approval over $0.50\n• x402 pay-per-request payments, with each order saved before any money moves\n• A memo guard that refuses to sign any payment whose on-chain memo doesn't match its order\n• A six-table Supabase schema with row-level security, a live audit dashboard, and a read-only Claude copilot\n\n**Stack**: TypeScript, Next.js, React, Solana, x402, Supabase, Claude API, Vitest, GitHub Actions\n\nDemo: agentauditor-kappa.vercel.app · Code: github.com/Zouzou-2006/Agent-Auditor"
+    },
+    predaq: {
+      keywords: ['predaq', 'program review', 'gemini', 'azure', 'assistant service'],
+      response: "At his Cincinnati State co-op, Nizar built **the AI assistant inside PreDAQ**, the college's program-review system, from scratch in C#/.NET. 🤖\n\nIt answers user questions about the system. He launched it on the **Google Gemini API** and later migrated it to **Azure OpenAI**."
+    },
+    machinelearning: {
+      keywords: ['machine learning', 'ml', 'ai', 'artificial intelligence', 'llm', 'openai', 'claude'],
+      response: "Nizar's AI work is **applied LLM engineering**: building real features on top of model APIs.\n\n• **PreDAQ assistant**: a production C#/.NET service, launched on Gemini and migrated to Azure OpenAI\n• **Agent Auditor**: a read-only Claude copilot that uses tool calls over live audit data\n• **Pantry Pal**: a human-in-the-loop OpenAI Vision workflow that identifies pantry items from photos\n\nHe also holds an **AI Foundations Certificate** from UC Digital Futures (ExLAI)."
+    },
     skills: {
-      keywords: ['skill', 'skills', 'technology', 'tech', 'language', 'programming', 'tools', 'what can you do', 'what do you know'],
-      response: "Nizar is proficient in:\n\n• **Languages**: Python, Java, C, C++, C#, JavaScript, TypeScript, SQL, HTML/CSS\n• **Frameworks & Libraries**: ASP.NET MVC, .NET, Node.js, Express, React, Pandas, PyTorch\n• **Databases**: SQL Server, PostgreSQL, MongoDB\n• **Tools & Practices**: Git, REST APIs, Power BI, Tableau, Agile/Scrum, SDLC\n\nBasically, he speaks more programming languages than human languages! 🤓"
+      keywords: ['skill', 'skills', 'technology', 'technologies', 'tech stack', 'stack', 'programming', 'tools', 'what can you do', 'what do you know'],
+      response: "Nizar's toolkit:\n\n• **Languages**: C#, Python, Java, TypeScript, JavaScript, SQL, C, C++\n• **Frameworks**: ASP.NET Core MVC, .NET, Next.js, React, Node.js, Express, Razor, Bootstrap\n• **Databases**: SQL Server, PostgreSQL (Supabase), MongoDB (Mongoose)\n• **AI, Data & Web3**: Azure OpenAI, Gemini API, OpenAI API, Claude API, Power BI, Tableau, Solana, x402\n• **Tools**: Git, GitHub Actions, Vitest, Visual Studio, VS Code, Vite, REST APIs, Agile/Scrum"
     },
     projects: {
-      keywords: ['project', 'projects', 'work', 'portfolio', 'built', 'created', 'developed', 'app', 'application'],
-      response: "Nizar has worked on several projects:\n\n**1. AlgoVision** - Code-structure visualizer built at MakeUC 2025 (React, TypeScript, Tree-sitter)\n\n**2. Pantry Pal** - Pantry-scanner & inventory capstone app (team of 4, Agile/Scrum)\n\n**3. Axel's GPR** - Full-stack business site with a bilingual support assistant (Node.js, Express, MongoDB)\n\n**4. VehicleRental** - Java OOP vehicle-rental system (Java, JDBC, SQL Server)\n\nCheck out the Projects section for more details!"
-    },
-    education: {
-      keywords: ['education', 'school', 'university', 'college', 'study', 'studying', 'student', 'degree'],
-      response: "Nizar is a **Software Developer** who transferred to **The Ohio State University** this Fall 2026 for a B.S. in Computer Science and Engineering! He earned his A.A.S. in Software Engineering Technology from Cincinnati State with a **4.0 GPA** and Dean's List every semester.\n\nHe also holds an **AI Foundations Certificate** from the University of Cincinnati's Digital Futures ExLAI Program.\n\nHe's actively seeking software engineering, full-stack, or AI/ML internships! (And to afford more than instant ramen 🍜)"
+      keywords: ['project', 'projects', 'portfolio', 'built', 'created', 'developed', 'app', 'application'],
+      response: "Nizar's projects:\n\n**1. Agent Auditor**: spending controls for an AI agent's USDC payments on Solana (UBC 2026 Hackathon, technical lead)\n\n**2. AlgoVision**: code-structure visualizer built at MakeUC 2025 (React, TypeScript, Tree-sitter, Three.js)\n\n**3. Pantry Pal**: inventory platform for a campus food pantry, with an OpenAI Vision scanning workflow (capstone, team of 4)\n\n**4. Axel's GPR**: live business site with a bilingual chatbot (Node.js, Express, MongoDB)\n\n**5. VehicleRental**: Java OOP rental system (Java, JDBC, SQL Server)\n\nAsk me about any of them by name!"
     },
     experience: {
-      keywords: ['experience', 'intern', 'internship', 'job', 'work experience', 'position'],
-      response: "Nizar currently works as a **Software Developer at Cincinnati State Technical & Community College** (Jan 2026 – Present):\n\n• Develops and maintains internal web apps using ASP.NET MVC and C# within an Agile/Scrum team\n• Builds and maintains SQL Server database solutions for internal college systems\n• Creates reporting dashboards in Power BI and Tableau\n\nHe's also been a **Sales Associate at The Home Depot** since 2024, delivering customer service in a high-volume retail environment.\n\nHe's now seeking software engineering, full-stack, or AI/ML internships! Warning: May debug your code AND your life choices. 😄"
+      keywords: ['experience', 'intern', 'internship', 'job', 'jobs', 'work experience', 'position', 'co-op', 'coop', 'employer', 'worked'],
+      response: "**Software Developer Co-op**, Cincinnati State Technical & Community College (Jan – Aug 2026)\n• Built PreDAQ's AI assistant from scratch in C#/.NET (Gemini, later Azure OpenAI)\n• Developed ASP.NET Core MVC features in C# and SQL Server in an Agile/Scrum team\n• Built Power BI and Tableau dashboards and Python automation tools\n\n**Web Developer**, Axel's GPR (Feb 2026 – Present)\n• Built a live painting and renovation business site: Node.js/Express REST API, MongoDB, bilingual chatbot\n\n**Sales Associate**, The Home Depot, Flooring & Millwork (part-time, Dec 2024 – Present)"
     },
-    contact: {
-      keywords: ['contact', 'email', 'reach', 'phone', 'linkedin', 'github', 'connect', 'hire'],
-      response: "You can reach Nizar through:\n\n📧 **Email**: farisnizaradam@gmail.com\n📱 **Phone**: (513) 462-9937\n💼 **LinkedIn**: linkedin.com/in/nizar-faris-bb1abb323\n🐙 **GitHub**: github.com/Zouzou-2006\n\nFeel free to reach out for internship opportunities or collaboration! He responds faster than a O(1) algorithm! ⚡"
+    clubs: {
+      keywords: ['club', 'clubs', 'crypto club', 'quant', 'trading', 'builders', 'activities', 'extracurricular', 'organization'],
+      response: "Nizar is a member of the **Ohio State University Crypto Club** (Fall 2026 – Present):\n\n• **Quant Trading Team**: develops strategy logic and works through backtesting and evaluation\n• **Builders cohort**: on the Collectors team of the club's Research Pipeline project, and competing in the UBC 2026 Hackathon with a club team (Agent Auditor)"
     },
-    location: {
-      keywords: ['location', 'where', 'live', 'based', 'city'],
-      response: "Nizar is based in **Columbus, Ohio**! He recently transferred to Ohio State University. He's available for local internships and open to remote opportunities as well! Go Bucks! 🌰🏈"
+    education: {
+      keywords: ['education', 'school', 'university', 'college', 'study', 'studying', 'student', 'degree', 'major', 'graduate', 'graduation'],
+      response: "🎓 **The Ohio State University**: B.S. Computer Science and Engineering, expected May 2029\n\n🎓 **Cincinnati State Technical & Community College**: A.A.S. Software Engineering Technology, **4.0 GPA**, Dean's List every term (Fall 2024 – Summer 2026)\n\n📜 **AI Foundations Certificate**, University of Cincinnati Digital Futures (ExLAI), 2025"
     },
-    about: {
-      keywords: ['about', 'who', 'tell me', 'introduce', 'yourself'],
-      response: "Nizar Faris is a **Software Developer** at Cincinnati State, transferring to **The Ohio State University** for a B.S. in Computer Science and Engineering. He has:\n\n✨ Production experience with ASP.NET MVC/C# and SQL Server\n✨ Full-stack range across Node.js, React, and TypeScript\n✨ A perfect 4.0 GPA and Dean's List every semester\n✨ Excellent problem-solving skills\n\nHe's actively seeking software engineering, full-stack, or AI/ML internships! (Translation: He wants to make cool stuff and get paid for it 🚀)"
-    },
-    height: {
-      keywords: ['height', 'tall', 'how tall'],
-      response: "He claims to be 6ft but he's really 5ft 10. Don't bring this up in person though, it's a sensitive topic. 📏😂"
-    },
-    ethnicity: {
-      keywords: ['race', 'ethnicity', 'ethnic', 'nationality', 'moroccan', 'where from', 'heritage', 'background'],
-      response: "He is Moroccan, but he's still a Caucasian guy according to the US government. The paperwork is confused, but the couscous skills are authentic! 😄"
-    },
-    age: {
-      keywords: ['age', 'old', 'how old', 'birthday', 'born'],
-      response: "He's young enough to understand TikTok trends but old enough to remember when debugging meant actual bugs in computers. 🐛 Born in 2006, making him a true digital native!"
-    },
-    hobbies: {
-      keywords: ['hobby', 'hobbies', 'fun', 'free time', 'interest', 'like to do', 'enjoy'],
-      response: "When he's not coding, Nizar enjoys:\n\n• Debugging code that worked yesterday 🐛\n• Arguing with Stack Overflow answers\n• Optimizing algorithms that didn't need optimizing\n• Pretending to understand regex\n\nJust kidding! He also loves AI/ML projects, building cool apps, and probably binge-watching tech videos at 2 AM. 🌙"
-    },
-    coffee: {
-      keywords: ['coffee', 'caffeine', 'drink', 'tea'],
-      response: "Like every programmer, Nizar runs on a steady diet of caffeine and semicolons. ☕ His code quality is directly proportional to his coffee intake. Invest in his coffee fund = invest in better code! 😂"
-    },
-    bugs: {
-      keywords: ['bug', 'bugs', 'error', 'debug'],
-      response: "Nizar doesn't write bugs, he writes *undocumented features*. 🐛✨\n\nBut seriously, he's great at debugging! He once spent 3 hours fixing a bug that was caused by a missing semicolon. We don't talk about that day. 😅"
-    },
-    stackoverflow: {
-      keywords: ['stack overflow', 'stackoverflow', 'copy', 'paste'],
-      response: "Stack Overflow? Never heard of it. Nizar writes ALL his code from scratch. Every. Single. Line.\n\n...Okay fine, he uses Stack Overflow. But he always understands the code before using it! (Most of the time... like 60%... okay maybe 50%...) 😂"
-    },
-    work: {
-      keywords: ['work life', 'work style', 'how does he work'],
-      response: "Nizar's work style:\n\n✅ Commits code with meaningful messages\n✅ Actually writes documentation\n✅ Uses descriptive variable names (no more 'x', 'temp', 'data2')\n✅ Tests his code... sometimes... okay, when it breaks in production\n\nHe's the teammate who actually reads the PR before approving! 🌟"
-    },
-    girlfriend: {
-      keywords: ['girlfriend', 'dating', 'single', 'relationship', 'wife', 'married', 'partner', 'love life', 'romantic'],
-      response: "This guy has been single since the dawn of time. 💔😂\n\nBut fear not! We're currently accepting **Girlfriend Applications**! 📝\n\nType **'girlfriend application'** to fill out the official form! Warning: Requirements include tolerance for:\n• 3 AM coding sessions\n• Endless tech talk\n• Coffee addiction\n• Debugging as a love language 💻❤️"
-    },
-    name: {
-      keywords: ['name', 'called', 'who is he', 'who are you talking about', "what's his name"],
-      response: "His name is **Nizar Faris**! 🌟\n\nFun fact: His name means 'devoted' in Arabic. Devoted to what? Probably debugging and Stack Overflow at this point! 😂"
-    },
-    resume: {
-      keywords: ['resume', 'cv', 'curriculum vitae', 'download resume', 'see resume', 'view resume'],
-      response: "Want to see Nizar's resume? 📄 Hit the **Download Resume** button up top, or here's the short version:\n\n**💼 EXPERIENCE**\nSoftware Developer @ Cincinnati State (Jan 2026 – Present)\nSales Associate @ The Home Depot (2024 – Present)\n\n**📚 EDUCATION**\nB.S. Computer Science & Engineering | The Ohio State University | Fall 2026 – Present\nA.A.S. Software Engineering Technology | Cincinnati State | **4.0 GPA**, Dean's List every semester\n\n**🛠️ TOP PROJECTS**\n1. **AlgoVision** - Code-structure visualizer (React, TypeScript, Tree-sitter)\n2. **Pantry Pal** - Pantry scanner & inventory capstone\n3. **Axel's GPR** - Full-stack site with bilingual support bot (Node.js, Express, MongoDB)\n4. **VehicleRental** - Java OOP rental system (Java, JDBC, SQL Server)\n\n**⚙️ TECH STACK**\nC#, Python, Java, JavaScript/TypeScript, SQL · ASP.NET MVC, .NET, Node.js, React · SQL Server, PostgreSQL, MongoDB\n\n📧 Contact: **farisnizaradam@gmail.com**"
-    },
-    fullname: {
-      keywords: ['full name', 'complete name', 'first name', 'last name', 'surname'],
-      response: "His full name is **Nizar Faris**. Simple, elegant, easy to pronounce (unlike some of his variable names 😅)."
-    },
-    phone: {
-      keywords: ['phone', 'phone number', 'call', 'telephone', 'mobile'],
-      response: "You can reach Nizar at:\n\n📱 **Phone**: (513) 462-9937\n📧 **Email**: farisnizaradam@gmail.com\n\nHe's more of a 'text/email person' anyway. Calling means less time for coding! 😄"
+    gpa: {
+      keywords: ['gpa', 'grade', 'grades', '4.0', 'straight a', 'dean', 'honor', 'honors'],
+      response: "Nizar earned a **4.0 GPA** in his A.A.S. in Software Engineering Technology at Cincinnati State, with Dean's List every term from Fall 2024 through Summer 2026. 📚"
     },
     linkedin: {
       keywords: ['linkedin', 'linked in'],
-      response: "Connect with Nizar on LinkedIn! 💼\n\n🔗 **linkedin.com/in/nizar-faris-bb1abb323**\n\nHe's active there and loves connecting with fellow developers and potential employers! Just don't send him those 'make money working from home' messages. 😂"
+      response: "Connect with Nizar on LinkedIn: **linkedin.com/in/nizar-faris** 💼"
     },
     github: {
-      keywords: ['github', 'git hub', 'repositories', 'repos', 'code'],
-      response: "Check out Nizar's code on GitHub! 🐙\n\n🔗 **github.com/Zouzou-2006**\n\nWarning: You might find some commit messages from 3 AM. Those are... interesting. 😅 But the code is solid!"
+      keywords: ['github', 'git hub', 'repositories', 'repos', 'source code'],
+      response: "Nizar's code is on GitHub: **github.com/Zouzou-2006** 🐙\n\nStart with **Agent Auditor**, his strongest project."
+    },
+    contact: {
+      keywords: ['contact', 'email', 'reach', 'connect', 'hire', 'phone', 'call'],
+      response: "You can reach Nizar through:\n\n📧 **Email**: farisnizaradam@gmail.com\n📱 **Phone**: (513) 462-9937\n💼 **LinkedIn**: linkedin.com/in/nizar-faris\n🐙 **GitHub**: github.com/Zouzou-2006\n\nHe's open to internships and collaboration."
+    },
+    location: {
+      keywords: ['location', 'where', 'live', 'based', 'city', 'columbus', 'cincinnati', 'ohio'],
+      response: "Nizar is based in **Columbus, Ohio**, where he studies at Ohio State. He's open to Columbus-area and remote opportunities. Go Bucks! 🌰"
+    },
+    about: {
+      keywords: ['about', 'who', 'tell me', 'introduce', 'yourself', 'summary'],
+      response: "Nizar Faris is a **Computer Science and Engineering student at The Ohio State University** and a software developer.\n\n✨ Built a production AI assistant during his Cincinnati State co-op\n✨ Technical lead on **Agent Auditor**, spending controls for AI agent payments on Solana\n✨ Full-stack range across C#/.NET, TypeScript/Next.js, Node.js, and SQL\n✨ 4.0 GPA in his A.A.S., Dean's List every term\n\nHe's looking for software engineering and AI internships."
+    },
+    resume: {
+      keywords: ['resume', 'cv', 'curriculum vitae'],
+      response: "Hit the **Download Resume** button at the top of the page for the PDF. 📄\n\nThe short version: CSE at Ohio State (expected May 2029), a software developer co-op where he built a production AI assistant, technical lead on Agent Auditor, and a 4.0 A.A.S. from Cincinnati State."
+    },
+    name: {
+      keywords: ['name', 'called', 'full name', 'first name', 'last name', 'surname'],
+      response: "His name is **Nizar Faris**. 🌟"
     },
     languages: {
-      keywords: ['speak', 'languages', 'language speak', 'bilingual', 'multilingual', 'what languages'],
-      response: "Nizar speaks:\n\n🗣️ **Human Languages**: English, Arabic (Moroccan dialect), French\n💻 **Programming Languages**: C#, Python, Java, SQL, JavaScript, TypeScript, HTML/CSS\n\nHe's fluent in both human AND computer languages! Though he might be better at explaining algorithms than feelings. 😂"
+      keywords: ['speak', 'spoken', 'bilingual', 'multilingual', 'what languages', 'arabic', 'french'],
+      response: "Nizar speaks **English, Arabic, and French**. 🗣️\n\nIn code: C#, Python, Java, TypeScript, JavaScript, SQL, C, and C++."
     },
     availability: {
-      keywords: ['available', 'availability', 'start', 'when can you start', 'free'],
-      response: "Nizar is actively seeking **Software Development Internships** and is available to start ASAP! 🚀\n\n📅 He's flexible with:\n• Start dates\n• Work arrangements (in-person or remote)\n• Part-time or full-time positions\n\nReach out to discuss opportunities: **farisnizaradam@gmail.com**\n\nHe responds faster than his code compiles! ⚡"
+      keywords: ['available', 'availability', 'when can you start', 'start date'],
+      response: "Nizar is looking for **software engineering and AI internships** and co-ops. 🚀\n\nEmail **farisnizaradam@gmail.com** to talk about timing and arrangements."
     },
     salary: {
-      keywords: ['salary', 'pay', 'compensation', 'wage', 'money', 'cost'],
-      response: "Nizar is open to discussing compensation based on the role and responsibilities! 💰\n\nFor internships, he's flexible and focused on gaining experience. His rates are:\n\n• **Currency**: USD or coffee beans ☕\n• **Payment terms**: Negotiable\n• **Benefits**: Clean code included at no extra charge! 😄\n\nContact him to discuss: **farisnizaradam@gmail.com**"
+      keywords: ['salary', 'compensation', 'wage', 'pay rate'],
+      response: "Nizar is happy to discuss compensation for a specific role. Reach him at **farisnizaradam@gmail.com**."
     },
     citizenship: {
-      keywords: ['citizen', 'citizenship', 'visa', 'work authorization', 'legally', 'authorized to work'],
-      response: "For work authorization questions, it's best to discuss directly with Nizar! 🇺🇸\n\nHe's based in Columbus, OH and can clarify his work status for your specific needs.\n\n📧 Email: **farisnizaradam@gmail.com**"
-    },
-    gpa: {
-      keywords: ['gpa', 'grade', 'grades', 'academic performance', 'school performance'],
-      response: "Nizar earned a perfect **4.0 GPA** from his A.A.S. Software Engineering Technology program at Cincinnati State, with Dean's List every semester! 📚\n\nStraight A's across the board! He's now at **The Ohio State University** for his B.S. in Computer Science & Engineering - new chapter, same standards! 🎯"
+      keywords: ['citizen', 'citizenship', 'visa', 'work authorization', 'authorized to work', 'sponsorship'],
+      response: "For work authorization questions, please ask Nizar directly at **farisnizaradam@gmail.com**."
     },
     algovision: {
-      keywords: ['algovision', 'algorithm visualization', 'makeuc', 'code structure', 'visualizer'],
-      response: "**AlgoVision** is one of Nizar's favorite builds! 🚀\n\nBuilt at MakeUC 2025, it's a browser-based tool that parses Python and C# source code and renders control-flow graphs, call graphs, and class diagrams.\n\n**Tech Stack**: React, TypeScript, Vite, Tree-sitter (WASM), Web Worker, Monaco Editor, Mermaid\n**What it does**: Parses source code client-side into a language-agnostic intermediate representation and renders it as interactive diagrams\n\nIt's like having X-ray vision for code! 👀💻\n\nCheck it out: github.com/Zouzou-2006/AlgoVision-MakeUC-2025-"
+      keywords: ['algovision', 'makeuc', 'code structure', 'visualizer', 'tree-sitter'],
+      response: "**AlgoVision** was built at MakeUC 2025 as a team project. 🚀\n\nIt's a browser-only tool that parses Python and C# with Tree-sitter (WASM) in a Web Worker, builds a language-agnostic intermediate representation, and renders control-flow graphs, call graphs, and class diagrams.\n\nNizar reworked the interactive UI, including the 3D graph view (Three.js), toolbar, layout, and rendering performance.\n\nCode: github.com/Zouzou-2006/AlgoVision-MakeUC-2025-"
     },
     pantrypal: {
-      keywords: ['pantry pal', 'pantry', 'scanner', 'inventory', 'capstone'],
-      response: "**Pantry Pal** is Nizar's Agile/Scrum capstone project at Cincinnati State! 🥫📷\n\n**Team**: 4 people\n**What it does**: Identifies pantry items and automatically adds them to a user's food inventory\n**His contribution**: Co-developed the front-end and a QR-code workflow that lets users open the scanner on a mobile device and add items via the phone camera (backend built by teammates)\n\nA real team project, start to finish, using proper Agile ceremonies! 🎯"
+      keywords: ['pantry pal', 'pantry', 'scanner', 'inventory', 'capstone', 'vision'],
+      response: "**Pantry Pal** is an inventory platform for Cincinnati State's campus food pantry, built as a team-of-4 capstone. 🥫\n\n**Nizar's part**:\n• A human-in-the-loop **OpenAI Vision** workflow that identifies pantry items from photos for staff to confirm\n• Co-developed the frontend and the Chart.js reporting pages\n• Contributed to a QR-code flow that opens the scanner on a phone\n\n**Stack**: ASP.NET Core MVC, C#, SQL Server, OpenAI Vision API, Chart.js"
     },
     axelsgpr: {
-      keywords: ['axel', "axel's gpr", 'gpr', 'bilingual', 'mongodb'],
-      response: "**Axel's GPR** is a full-stack business website Nizar built solo! 🌐\n\n**Tech Stack**: Node.js, Express, MongoDB (via Mongoose)\n**Features**:\n• REST API that persists customer estimate requests to MongoDB\n• Admin dashboard and estimate-listing routes secured with HTTP Basic Auth and environment-based config\n• A rule-based **bilingual (English/Spanish)** support assistant that maps user questions to keyword-scored responses\n\nBasically, he built a chatbot before he built me! 🤖"
+      keywords: ['axel', 'gpr', 'mongodb', 'renovation', 'painting'],
+      response: "**Axel's GPR** is a live website for a painting and renovation business. Nizar built the layout, front end, and backend; a partner contributed content and photos. 🌐\n\n• Node.js/Express REST endpoints with MongoDB/Mongoose for estimates, bookings, and gallery uploads\n• Admin routes protected with HTTP Basic Auth\n• A bilingual rule-based chatbot with 11 keyword-defined intents that auto-detects Spanish"
     },
     vehiclerental: {
       keywords: ['vehiclerental', 'vehicle rental', 'java oop', 'jdbc'],
-      response: "**VehicleRental** is Nizar's Java OOP showcase! 🚗\n\n**Tech Stack**: Java, JDBC, SQL Server\n**Design**: An object-oriented class hierarchy with a base vehicle class extended by car, motorbike, and trailer types\n**What it does**: Connects to a SQL Server database via JDBC to manage a full vehicle-rental workflow\n\nClean inheritance, clean code! 💪"
+      response: "**VehicleRental** is a Java OOP project: an abstract vehicle class hierarchy (car, motorbike, trailer) using inheritance and polymorphism, with a JDBC data-access layer to SQL Server. 🚗"
     },
-    machinelearning: {
-      keywords: ['machine learning', 'ml', 'ai', 'artificial intelligence', 'neural network'],
-      response: "Nizar is **REALLY** into Machine Learning! 🤖\n\n**Expertise Level**: 90%\n**Tools**: PyTorch, Pandas, Transformers\n**Knowledge**: Neural networks, deep learning, data processing\n\n He's not just using ML libraries - he understands the math behind them! From backpropagation to transformers architecture. This is his passion! 🔥\n\nHe's literally building AI assistants (like me!) and algorithm visualization tools. The future is AI, and he's riding that wave! 🌊"
-    },
-    perfectgpa: {
-      keywords: ['4.0', 'perfect', 'straight a', 'dean', 'honor'],
-      response: "Yes, Nizar graduated Cincinnati State with a **PERFECT 4.0 GPA** and Dean's List every semester! 🎓✨\n\nThat's not 'pretty good' or 'almost perfect' - it's PERFECT. Every. Single. Class.\n\n**What this means**:\n• Exceptional time management\n• Deep understanding of concepts\n• Consistent dedication\n• Academic excellence\n\nHe's now bringing that same energy to **The Ohio State University** for his B.S. in Computer Science & Engineering! No 'C's get degrees' mentality here! 💯"
-    },
-    cincinnati: {
-      keywords: ['cincinnati', 'cincy', 'ohio', 'cincinnati state', 'columbus', 'ohio state', 'osu'],
-      response: "Nizar is based in **Columbus, Ohio**! 🌰\n\n**Current School**: The Ohio State University\n**Program**: B.S. Computer Science & Engineering\n**Previously**: Cincinnati State Technical & Community College - A.A.S. Software Engineering Technology, **4.0 GPA**\n\n**Why the move?**\nHe transferred to Ohio State to level up his CS education - go Buckeyes! 🏈\n\nHe's still a Software Developer at Cincinnati State on the side, and he's available for local internships in Columbus or remote opportunities. Flexible either way! 🚀"
-    },
-    moroccan: {
-      keywords: ['morocco', 'couscous', 'arabic', 'north africa'],
-      response: "Nizar is proudly **Moroccan**! 🇲🇦\n\n**Fun Facts**:\n• Speaks Arabic (Moroccan dialect) + French\n• Can make authentic couscous (probably)\n• Rich cultural heritage\n• US government classifies him as Caucasian (confused paperwork! 😂)\n\n**Cultural Skills**:\n• Multilingual (3 human languages + 5 programming languages)\n• Understanding of diverse perspectives\n• International mindset\n\nHe brings that global perspective to his work! 🌍"
+    hobbies: {
+      keywords: ['hobby', 'hobbies', 'free time', 'like to do', 'enjoy', 'for fun'],
+      response: "Outside of class and code, Nizar builds side projects, competes in hackathons, works on trading strategies with the OSU Crypto Club, and does strength training. 💪"
     },
     strength: {
-      keywords: ['strength', 'training', 'workout', 'gym', 'fitness', 'exercise', 'lift', 'lifting', 'bodybuilding', 'muscle'],
-      response: "Nizar is into **Strength Training**! 💪🏋️\n\n**Why it matters**:\n• Discipline carries over from gym to code\n• Physical fitness = mental sharpness\n• Problem-solving under pressure (like that last rep!)\n• Goal-oriented mindset\n\n**Programming Parallel**:\nJust like debugging, you gotta keep pushing through the pain until it works! 😤\n\n**Daily Routine**:\n• Morning: Lift weights 🏋️\n• Afternoon: Lift bugs out of code 🐛\n• Evening: Lift his GPA (already at 4.0 tho!) 📚\n\nHe's building both his body AND his portfolio! Strong code, strong body! 💻💪"
+      keywords: ['strength', 'workout', 'gym', 'fitness', 'exercise', 'lifting', 'muscle'],
+      response: "Nizar is into **strength training**. 💪 Same idea as debugging: keep showing up and push through until it works."
+    },
+    coffee: {
+      keywords: ['coffee', 'caffeine', 'tea'],
+      response: "Like every programmer, Nizar runs on caffeine and semicolons. ☕"
+    },
+    bugs: {
+      keywords: ['bug', 'bugs', 'error', 'debug', 'debugging'],
+      response: "Nizar doesn't write bugs, he writes *undocumented features*. 🐛✨\n\nSeriously though: his hackathon team's project ships with a 456-test suite, so the bugs don't get far."
     }
   };
+
+  // Match whole words/phrases only, so short keywords like "ai" don't fire inside "email"
+  const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const keywordMatches = (text, keyword) =>
+    new RegExp('(^|[^a-z0-9])' + escapeRegex(keyword) + '($|[^a-z0-9])').test(text);
 
   // Toggle chat modal
   chatButton.addEventListener('click', () => {
@@ -566,7 +539,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check each knowledge category
     for (const category in knowledgeBase) {
       const data = knowledgeBase[category];
-      if (data.keywords.some(keyword => lowerMessage.includes(keyword))) {
+      if (data.keywords.some(keyword => keywordMatches(lowerMessage, keyword))) {
         return data.response;
       }
     }
@@ -574,9 +547,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fun personality responses
     if (lowerMessage.match(/\b(hi|hello|hey|greetings|sup|yo)\b/)) {
       const greetings = [
-        "Hello! 👋 I'm Nizar's AI assistant (way cooler than ChatGPT, obviously 😎). Ask me about his **skills**, **projects**, **height** (controversial topic), or **ethnicity**!",
+        "Hello! 👋 I'm Nizar's AI assistant. Ask me about his **experience**, **projects**, **Agent Auditor**, or **skills**!",
         "Hey there! 🚀 I'm the AI version of Nizar, except I don't need coffee to function. Ask me anything!",
-        "Greetings, human! 🤖 Ready to learn about the legend that is Nizar? Try asking about his **hobbies**, **work style**, or his relationship with **Stack Overflow**!"
+        "Greetings, human! 🤖 Try asking about Nizar's **AI work**, his **clubs**, or his **education**!"
       ];
       return greetings[Math.floor(Math.random() * greetings.length)];
     }
@@ -616,16 +589,11 @@ document.addEventListener('DOMContentLoaded', function() {
       return "YES! Hire him! He's available, talented, and comes with a free AI assistant (that's me! 🤖). He's seeking **internships** and is ready to turn coffee into code! Check his **contact** info!";
     }
 
-    // Girlfriend Application Form
-    if (lowerMessage.includes('girlfriend application')) {
-      return "**💝 OFFICIAL GIRLFRIEND APPLICATION FORM 💝**\n**Status: ACCEPTING APPLICATIONS**\n\n**━━━━ SECTION 1: BASIC QUALIFICATIONS ━━━━**\n□ Age 18+ (obviously)\n□ Can tolerate nerdy humor and bad puns\n□ Willing to date a guy who's been single since the dawn of time\n□ Understands that 'just one more line of code' = 2 hours\n\n**━━━━ SECTION 2: TECHNICAL COMPATIBILITY ━━━━**\n□ Accept being second place to VS Code & PyCharm\n□ Can you be a rubber duck debugger? (Just nod and say 'hmm')\n□ Willing to learn what 'Git push', 'merge conflict', and 'stack overflow' mean\n□ Won't judge him for talking to AI chatbots at 3 AM\n□ Can handle 3 AM 'Eureka!' moments followed by excitement\n\n**━━━━ SECTION 3: LIFESTYLE REQUIREMENTS ━━━━**\n□ Date nights = hackathons, coding sessions, tech meetups\n□ Understand coffee is a food group\n□ Accept that debugging is a love language\n□ Can survive on pizza, ramen, and Moroccan food\n□ Won't complain about monitor glow at night\n\n**━━━━ SECTION 4: PERSONALITY TRAITS ━━━━**\n□ Sense of humor (you'll need it)\n□ Patience level: EXTREME (dealing with compile errors)\n□ Can handle 'I'll fix it tomorrow' (which means next week)\n□ Appreciate intelligence and ambition\n□ Love for learning new things\n\n**━━━━ SECTION 5: CULTURAL APPRECIATION ━━━━**\n□ Ready to try Moroccan couscous (best food ever!)\n□ Can learn some Arabic phrases (bonus points!)\n□ Open to different cultures and perspectives\n□ Willing to visit Morocco someday\n\n**━━━━ SECTION 6: BONUS POINTS ━━━━**\n□ You can code (any language counts!)\n□ You make better couscous than his mom (good luck!)\n□ You actually think his height is perfect (remember, 6ft! 📏)\n□ Know the difference between Java & JavaScript\n□ Can explain why Python is named after Monty Python\n□ You're also into AI/ML (instant connection!)\n□ Can beat him at chess or video games\n\n**━━━━ SECTION 7: ABSOLUTE DEAL BREAKERS ━━━━**\n❌ Think HTML is a programming language\n❌ Ask 'Can you fix my printer?'\n❌ Prefer tabs over spaces (we use spaces, period)\n❌ Say 'just Google it' when he's explaining something\n❌ Think his projects are 'just games'\n❌ Not supportive of his career goals\n❌ Can't handle his obsession with efficiency\n\n**━━━━ APPLICATION SUBMISSION ━━━━**\n📧 **Email**: farisnizaradam@gmail.com\n📋 **Subject**: 'Girlfriend Application - [Your Name]'\n📝 **Include**: Why you're interested, favorite programming joke\n\n⏱️ **Processing Time**: 2-3 business days\n*(Translation: whenever he's done debugging and checks his email)*\n\n**⚠️ IMPORTANT NOTES:**\n• He's Moroccan but US government calls him Caucasian 🤷\n• Claims to be 6ft (actually 5'10\")\n• Born 2006 (Gen Z energy!)\n• Fluent in English, Arabic, French, Python, SQL, and sarcasm\n• Currently seeking internships (so you might be dating a future tech CEO!)\n• Based in Columbus, OH (swing state vibes)\n\n**💡 PRO TIPS FOR APPLICANTS:**\n1. Mention you read this whole application (shows dedication)\n2. Include a programming joke in your email\n3. Don't mention the height thing\n4. Be genuine - he's smart and can tell!\n5. Show interest in his projects (they're his babies)\n\n**🎯 SELECTION CRITERIA:**\nApplications will be evaluated based on:\n• Compatibility score (calculated by AI, obviously)\n• Humor level (must appreciate dad jokes)\n• Support factor (will you cheer him on?)\n• Intelligence (sapiosexual alert!)\n• Patience meter (can you handle developer time?)\n\n**📊 CURRENT APPLICATION STATUS:**\nApplications received: 0\nSlots available: 1\nSuccess rate: TBD\nWaiting time: Unknown (but worth it!)\n\n**🏆 WHAT YOU GET IF ACCEPTED:**\n✅ A loyal, intelligent, ambitious partner\n✅ Endless tech support (actually useful kind)\n✅ Someone who actually listens (debugging requires it)\n✅ Moroccan food cooked with love\n✅ A guy with a 4.0 GPA (smart and driven!)\n✅ Future software engineer (stable career path!)\n✅ Someone who'll build you custom apps\n✅ Bilingual boyfriend (English + Arabic + coding languages)\n\n**⚠️ LEGAL DISCLAIMER:**\nBy submitting this application, you acknowledge that:\n• Nizar might forget dates when debugging\n• You'll hear 'just one more bug' at least 100 times\n• Your photos might become test data for his projects\n• Coffee dates might turn into coding sessions\n• You're signing up for dad jokes and puns\n\n**━━━━━━━━━━━━━━━━━━━━━━━**\nGood luck, applicant! May your code compile on the first try, and may the odds be ever in your favor! 🎯😂💻\n\n*P.S. - Yes, he actually made an AI create this application. If that's not commitment to efficiency, I don't know what is!* 🤖❤️";
-    }
-
     // Default response with personality
     const defaults = [
-      "Hmm, I'm not sure about that one! 🤔 But I can tell you about Nizar's **skills**, **projects**, **education**, **experience**, **height**, **ethnicity**, or **hobbies**. Pick your poison!",
-      "That's outside my knowledge base! Try asking about his **work style**, relationship with **bugs**, **coffee** addiction, or his **love life**!",
-      "Error 404: Answer not found! 😅 But I can help with his **skills**, **projects**, or why he's obsessed with **Stack Overflow**. What'll it be?"
+      "Hmm, I'm not sure about that one! 🤔 Try asking about Nizar's **experience**, **projects**, **Agent Auditor**, **skills**, **education**, or **clubs**.",
+      "That's outside my knowledge base! I can tell you about his **AI work**, **projects**, **experience**, or how to **contact** him.",
+      "Error 404: Answer not found! 😅 Ask me about **Agent Auditor**, **PreDAQ**, **skills**, or his **resume**."
     ];
     return defaults[Math.floor(Math.random() * defaults.length)];
   }
